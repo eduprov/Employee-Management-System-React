@@ -45,7 +45,7 @@ const Dashboard = () =>{
                         <div className="card-body">
                             <h3 className="card-numbers"></h3> <i class="fas fa-file-contract icons"></i>
                             <h4 className="card-title">Track Attendance</h4>
-                            <Link ><i class="fas fa-arrow-circle-right text-white fa-2x"></i></Link>
+                            <Link to='/trackattendance' ><i class="fas fa-arrow-circle-right text-white fa-2x"></i></Link>
                         </div>
                     </div>
                 </div>

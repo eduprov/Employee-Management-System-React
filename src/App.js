@@ -1,6 +1,8 @@
 import React from 'react';
 import Login from './Components/Login'
 import LoginAttendace from './Components/LoginAttendace';
+import LoginOutAttendace from './Components/LogoutAttendance';
+import TrackAttendance from './Components/TrackAttendance';
 import ApplyForLeave from './Components/ApplyForLeave';
 import Dashboard from './Components/Dashboard';
 import SignUp from './Components/SignUp';
@@ -21,6 +23,8 @@ function App() {
     return (
       <Router >
         <Route exact path='/loginattendance' component={LoginAttendace}/> 
+        <Route exact path='/logoutattendance' component={LoginOutAttendace}/> 
+        <Route exact path='/trackattendance' component={TrackAttendance}/> 
         <Route exact path='/' component={Dashboard} />
         <Route exact path='/applyforleave' component={ApplyForLeave} />
         <Route exact path='/myprofile' component={MyProfile} />

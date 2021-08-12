@@ -84,7 +84,7 @@ const MyProfile = () =>{
 
                       <div className="row mt-4">
                      
-                       <h5>Days Present</h5>
+                       {/* <h5>Days Present</h5> */}
                       </div>
 
                      </div>

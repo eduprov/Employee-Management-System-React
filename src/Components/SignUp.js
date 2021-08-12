@@ -34,7 +34,7 @@ const SignUp = () =>{
         <div className="container">
             <div className="row">
                 <div className="col-md-3"></div>
-                <div className="col-md-6 mt-5">
+                <div className="col-md-6 mt-3">
                     <div className="card signup-card">
                         <div className="card-body">
                            <h5 className="mb-4">Update Employee Info</h5>
@@ -70,13 +70,30 @@ const SignUp = () =>{
                                </div>
                            </div>
                            <div className="row">
-                               <div className="col-md-12 mb-3">
+                               <div className="col-md-6 mb-3">
                                <label>Personal Email-ID</label>
                                    <input type="text" 
                                    className="form-control" 
                                    onChange={obj=>pickEmail(obj.target.value)}
                                    />
                                </div>
+                               <div className="col-md-6 mb-3">
+                               <label>Professional Email-ID</label>
+                                   <input type="text" 
+                                   className="form-control" 
+                                   onChange={obj=>pickEmail(obj.target.value)}
+                                   />
+                               </div>
+
+                               <div className="col-md-12 mb-3">
+                               <label>Address</label>
+                                   
+                                  <textarea className="form-control">
+
+                                  </textarea>
+                               </div>
+
+                               
                            </div>
                            <div className="form-group mt-3">
                                <button className="btn btn-primary" onClick={save}>
