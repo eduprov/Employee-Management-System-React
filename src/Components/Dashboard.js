@@ -41,15 +41,6 @@ const Dashboard = () =>{
                     </div>
                 </div>
                 <div className="col-lg-3">
-                <div className="card dashboard-cards followup">
-                        <div className="card-body">
-                            <h3 className="card-numbers"></h3> <i class="fas fa-file-contract icons"></i>
-                            <h4 className="card-title">Track Attendance</h4>
-                            <Link to='/trackattendance' ><i class="fas fa-arrow-circle-right text-white fa-2x"></i></Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-3">
                 <div className="card dashboard-cards interested">
                         <div className="card-body">
                             <h3 className="card-numbers"></h3> <i class="fa fa-paper-plane icons"></i>
@@ -58,9 +49,6 @@ const Dashboard = () =>{
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-2"></div>
                 <div className="col-lg-3">
                 <div className="card dashboard-cards total-admissions">
                         <div className="card-body">
@@ -70,6 +58,9 @@ const Dashboard = () =>{
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-2"></div>
                 <div className="col-lg-3">
                 <div className="card dashboard-cards dues-followup">
                         <div className="card-body">
@@ -87,6 +78,9 @@ const Dashboard = () =>{
                             <Link to="/signup" ><i class="fas fa-arrow-circle-right text-white fa-2x"></i></Link>
                         </div>
                     </div>
+                </div>
+                <div className="col-lg-3">
+               
                 </div>
                 <div className="col-lg-3"></div>
             </div>

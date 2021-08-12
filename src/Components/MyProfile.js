@@ -4,14 +4,21 @@ import './MyProfile.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import man from './man.png'
+import { Modal, Button } from "react-bootstrap";
 const MyProfile = () =>{
    
     const[name, processName] = useState("");
-    const[mobile, processMobile] = useState("");
-    const[cardid, processCardid] = useState("");
+    const[sex, processSex] = useState("")
     const[age, processAge] = useState("");
-    const[pemail, processPemail] = useState("");
-    const[email, processEmail] = useState("");
+    const[contact, processContact] = useState("");
+    const[altcont, processAltMobile] = useState("");
+    const[cardid, processCardId] = useState("");
+    const[offmail, processMail] = useState("");
+    const[permail, processPermail] = useState("");
+    const[designation, processDesignation] = useState("");
+    const[department, processDepartment] = useState("");
+    const[joiningdate, processJoiningDate] = useState("");
+    const[address, processAddress] = useState("");
 
     const getInfo = () =>{
         var url = "http://localhost:2222/fetchemployeeinfo";
@@ -19,11 +26,17 @@ const MyProfile = () =>{
         axios.post(url, input)
         .then(response =>{
             processName(response.data[0].name)
-            processMobile(response.data[0].mobile)
-            processCardid(response.data[0].cardid)
+            processSex(response.data[0].sex)
             processAge(response.data[0].age)
-            processPemail(response.data[0].pemail)
-            // processEmail(response.data[0].email)
+            processContact(response.data[0].contact)
+            processAltMobile(response.data[0].altcont)
+            processCardId(response.data[0].cardid)
+            processMail(response.data[0].offmail)
+            processPermail(response.data[0].permail)
+            processDesignation(response.data[0].designation)
+            processDepartment(response.data[0].department)
+            processJoiningDate(response.data[0].joiningdate)
+            processAddress(response.data[0].address)
         })
     }
 
@@ -31,86 +44,174 @@ const MyProfile = () =>{
        getInfo();
     },[])
 
+
+    const [login, setLogin] = useState(false);
+    const loginhandleClose = () => setLogin(false);
+    const loginModal = () => setLogin(true);
+
     return(
         <>
           <SideNavBar/>
         <div className="container">
          <div className="row">
-             <div className="col-md-2"></div>
-             <div className="col-md-6 mt-5">
+             <div className="col-md-1"></div>
+             <div className="col-md-10 mt-4">
                  <div className="card myprofile-card">
                      <div className="card-body">
-                      <h4>Employee Information</h4>      
-
-                      <div className="row">
-                      <div className="col-md-6 mt-3">
-                      <div className="form-group mb-3">
-                      <label className="mb-1">Mobile No</label>
-                      <input type="text" className="form-control" value={mobile} disabled={true} />
-                      </div>
-                      </div>
-                      <div className="col-md-6 mt-3">
-                      <div className="form-group mb-3">
-                      <label className="mb-1">Employee-ID</label>
-                      <input type="text" className="form-control" value={cardid} disabled={true} />
-                      </div>
-                      </div>
-                      </div>
-                      <div className="row">
-                      <div className="col-md-6 ">
-                      <div className="form-group mb-3">
-                      <label className="mb-1">Age</label>
-                      <input type="text" className="form-control" value={age} disabled={true} />
-                      </div>
-                      </div>
-                      <div className="col-md-6">
-                      <div className="form-group mb-3">
-                      <label className="mb-1">Personal Email-ID</label>
-                      <input type="text" className="form-control" value={pemail} disabled={true} />
-                      </div>
-                      </div>
-                      </div>
-                      <div className="row">
-                      <div className="col-md-12 ">
-                      <div className="form-group mb-3">
-                      <label className="mb-1">Address</label>
-                       <textarea className="form-control" disabled={true}>
+                         <h5>Employee Information</h5>
+                         <div className="row mt-4">
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Full Name</label>
+                                     <input type="text" value={name} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Sex</label>
+                                     <input type="text" value={sex} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Age</label>
+                                     <input type="text" value={age} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                         </div>
+                         <div className="row mt-3">
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Contact No</label>
+                                     <input type="text" value={contact} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Alt Contact No</label>
+                                     <input type="text" value={altcont} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Emp ID</label>
+                                     <input type="text" value={cardid} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                         </div>
+                         <div className="row mt-3">
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Offical Mail ID</label>
+                                     <input type="text" value={offmail} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Personal Mail ID</label>
+                                     <input type="text" value={permail} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Designation</label>
+                                     <input type="text" value={designation} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                         </div>
+                         <div className="row mt-3">
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Department</label>
+                                     <input type="text" value={department} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
+                             <div className="col-md-4">
+                                 <div className="form-group mb-1">
+                                     <label>Joining Date</label>
+                                     <input type="text" value={joiningdate} disabled={true}
+                                     className="form-control" />
+                                 </div>
+                             </div>
                           
-                       </textarea>
-                      </div>
-                      </div>
-                     
-                      </div>
+                         </div>
+                         <div className="row mt-3">
+                             <div className="col-md-12">
+                                 <div className="form-group mb-1">
+                                     <label>Address</label>
+                                     <textarea className="form-control" 
+                                     value={address} disabled={true}
+                                     >
 
-                      <div className="row mt-4">
-                     
-                       {/* <h5>Days Present</h5> */}
-                      </div>
+                                     </textarea>
 
+                                 </div>
+                             </div>
+                         </div>
+                         <div className="row mt-3">
+                             <div className="col-md-1"></div>
+                             <div className="col-md-2">
+                               <button className="btn btn-success" onClick={loginModal}>
+                                       Login
+                               </button>
+                             </div>
+                             <div className="col-md-3">
+                               <button className="btn btn-primary text-white" >
+                                       Lunch Break in
+                               </button>
+                             </div>
+                             <div className="col-md-3">
+                               <button className="btn btn-info text-white" >
+                                       Lunch Break out
+                               </button>
+                             </div>
+                             <div className="col-md-2">
+                               <button className="btn btn-danger text-white" >
+                                       Logout
+                               </button>
+                             </div>
+                         </div>
+                         
                      </div>
                  </div>
              </div>
              <div className="col-md-3 mt-5">
-             <div className="card profile-card">
-                     <div className="card-body ">
-                      <div className="profile-name">
-                      <img src={man}  /> 
-                       
-                      </div>
-                      <h5 className="text-center mt-2">{name}</h5>
-                      {/* <h6 className="text-center">{pemail}</h6> */}
-                      <div className="text-center">
-                      <Link className="logout" onClick={logout}>
-                        <li class="fa fa-power-off text-danger"></li> <span className="text-danger">Logout</span>
-                    
-                    </Link>
-                      </div>
-                     </div>
-
-                 </div>
+           
              </div>
          </div>
         </div>
+
+        <Modal show={login} onHide={loginhandleClose}>
+        <Modal.Header closeButton>
+         
+          <Modal.Title>Login Time</Modal.Title>
+        </Modal.Header>
+          <p className="text-center text-success"> </p>
+        <Modal.Body>
+        
+       
+          
+             
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={loginhandleClose}>
+            Close
+          </Button>
+          <Button variant="primary" >
+             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </>
     )
 

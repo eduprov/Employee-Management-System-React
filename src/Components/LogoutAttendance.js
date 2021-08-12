@@ -2,17 +2,24 @@ import React,{useState, useEffect} from 'react';
 import SideNavBar from './SideNavBar';
 import axios from 'axios';
 import './LoginAttendance.css'
+import { useParams } from 'react-router';
 const LogoutAttendace = () =>{
 
 
     
-    const[message, updateMessage] = useState("");
+     const[message, updateMessage] = useState("");
     const[name, pickName] = useState("");
     const[mobile, pickMobile] = useState("");
     const[email, pickEmail] = useState("");
     const[cardid, pickCardid] = useState("");
     const[login, pickLogin] = useState("");
     const[time, pickTime] = useState("");
+
+    const showdate=new Date();
+    const displaytodaydate=showdate.getDate()+'/'+(showdate.getMonth()+1)+'/'+showdate.getFullYear();
+    const dt=showdate.toDateString();
+    const displaytime=showdate.getHours()+':'+showdate.getMinutes()+':'+showdate.getSeconds();
+
 
     const save = () =>{
         var empid = localStorage.getItem("id");
@@ -30,29 +37,18 @@ const LogoutAttendace = () =>{
         })
     }
 
-    const showdate=new Date();
-    const displaytodaydate=showdate.getDate()+'/'+(showdate.getMonth()+1)+'/'+showdate.getFullYear();
-    const dt=showdate.toDateString();
-    const displaytime=showdate.getHours()+':'+showdate.getMinutes()+':'+showdate.getSeconds();
-
-
-
-    const[employee, getEmployee] = useState([])
-
+    const[employee, getEmployee] = useState([]);
     const FetchEmployee = () =>{
-       var input ={"empid":localStorage.getItem("id")}
-        var url = "http://localhost:2222/getemployeeinfo";
+        var input ={"empid": localStorage.getItem("id")}
+        var url = "http://localhost:2222/fetchemployeeinfo";
         axios.post(url, input)
         .then(response => getEmployee(response.data))
     }
-
+    
     useEffect(()=>{
-       FetchEmployee();
+      FetchEmployee();
     },[])
 
-    useEffect(()=>{
-       FetchEmployee();
-    },[])
     return(
         <>
           <SideNavBar/>
@@ -68,19 +64,51 @@ const LogoutAttendace = () =>{
                         <h5>Logout Attendance</h5>
                         {message}
                         <div className="row">
-                            <div className="col-md-6">
-                            <div className="form-group mb-3">
-                                    <label>Time</label>
-                                    <input type="text" value={displaytime } disabled={true}
-                                    className="form-control" 
-                                    onChange={obj=>pickTime(obj.target.value)}
-                                    />
-                                </div>
-                            </div>
+                         {
+                             employee.map((xemployee, index)=>{
+                                 return(
+                                     <>
+                                     <div className="col-md-6">
+                                         <div className="form-group mb-3">
+                                             <label>Name</label>
+                                             <input type="text" className="form-control" value={xemployee.name} />
+                                         </div>
+                                     </div>
+                                     <div className="col-md-6">
+                                         <div className="form-group mb-3">
+                                             <label>Mobile No</label>
+                                             <input type="text" className="form-control" value={xemployee.mobile} />
+                                         </div>
+                                     </div>
+                                     <div className="col-md-6">
+                                         <div className="form-group mb-3">
+                                             <label>Employee-ID</label>
+                                             <input type="text" className="form-control" value={xemployee.pemail} />
+                                         </div>
+                                     </div>
+                                     <div className="col-md-6">
+                                         <div className="form-group mb-3">
+                                             <label>Employee-ID</label>
+                                             <input type="text" className="form-control" value={xemployee.cardid} />
+                                         </div>
+                                     </div>
+                                     <div className="col-md-6">
+                                         <div className="form-group mb-3">
+                                         <label>Time</label>
+                                         <input type="text" value={displaytime } disabled={true}
+                                          className="form-control" 
+                                          onChange={obj=>pickTime(obj.target.value)} 
+                                             />
+                                         </div>
+                                     </div>
+                                     </>
+                                 )
+                             })
+                         }
                         </div>
                         {/* {dt} - {} */}
                         <div className="form-group">
-                            <button className="btn btn-primary"  onClick={save}>
+                            <button className="btn btn-primary" >
                                     Submit
                             </button>
                         </div>
@@ -95,3 +123,22 @@ const LogoutAttendace = () =>{
     )
 }
 export default LogoutAttendace
+
+{/* <div className="col-md-6">
+                            <div className="form-group mb-3">
+                                    <label>Name</label>
+                                    <input type="text" 
+                                    className="form-control" 
+                                    onChange={obj=>pickName(obj.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                            <div className="form-group mb-3">
+                                    <label>Time</label>
+                                    <input type="text" value={displaytime } disabled={true}
+                                    className="form-control" 
+                                    onChange={obj=>pickTime(obj.target.value)}
+                                    />
+                                </div>
+                            </div> */}
