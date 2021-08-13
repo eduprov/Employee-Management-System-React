@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom'
 import man from './man.png'
 import { Modal, Button } from "react-bootstrap";
 const MyProfile = () =>{
+
+    const[message, updateMessage] = useState("");
    
     const[name, processName] = useState("");
     const[sex, processSex] = useState("")
@@ -37,6 +39,7 @@ const MyProfile = () =>{
             processDepartment(response.data[0].department)
             processJoiningDate(response.data[0].joiningdate)
             processAddress(response.data[0].address)
+            console.log(response.data)
         })
     }
 
@@ -44,10 +47,60 @@ const MyProfile = () =>{
        getInfo();
     },[])
 
+    // 
+
+    const showdate=new Date();
+    const displaytodaydate=showdate.getDate()+'/'+(showdate.getMonth()+1)+'/'+showdate.getFullYear();
+    const dt=showdate.toDateString();
+    const displaytime=showdate.getHours()+':'+showdate.getMinutes()+':'+showdate.getSeconds();
+
 
     const [login, setLogin] = useState(false);
     const loginhandleClose = () => setLogin(false);
     const loginModal = () => setLogin(true);
+
+
+    const [logout, setLogout] = useState(false);
+    const logouthandleClose = () => setLogout(false);
+    const logoutModal = () => setLogout(true);
+
+    const [lunch, setLunch] = useState(false);
+    const lunchhandleClose = () => setLunch(false);
+    const lunchModal = () => setLunch(true);
+
+
+    const[date, processDate] = useState("");
+    const[time, processTime] = useState("");
+    const save = () =>{
+        var empid = localStorage.getItem("id");
+        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":date, "etime":displaytime, "empid":empid};
+        var url = "http://localhost:2222/attendance";
+        axios.post(url, input)
+        .then(response =>{
+            updateMessage(response.data);
+        })
+    }
+
+
+    const Logout = () =>{
+        var empid = localStorage.getItem("id");
+        var input = {"etime":displaytime, "empid":empid}
+        var url = "http://localhost:2222/logoutattendance";
+        axios.post(url, input)
+        .then(response =>{
+            updateMessage(response.data);
+        })
+    }
+
+    const LunchIn = () =>{
+        var empid = localStorage.getItem("id");
+        var input = {"etime":displaytime, "empid":empid}
+        var url = "http://localhost:2222/lunchbreakin";
+        axios.post(url, input)
+        .then(response =>{
+            updateMessage(response.data);
+        })
+    }
 
     return(
         <>
@@ -166,7 +219,7 @@ const MyProfile = () =>{
                                </button>
                              </div>
                              <div className="col-md-3">
-                               <button className="btn btn-primary text-white" >
+                               <button className="btn btn-primary text-white" onClick={lunchModal}>
                                        Lunch Break in
                                </button>
                              </div>
@@ -176,7 +229,7 @@ const MyProfile = () =>{
                                </button>
                              </div>
                              <div className="col-md-2">
-                               <button className="btn btn-danger text-white" >
+                               <button className="btn btn-danger text-white" onClick={logoutModal}>
                                        Logout
                                </button>
                              </div>
@@ -191,6 +244,7 @@ const MyProfile = () =>{
          </div>
         </div>
 
+          {/* Login Modal */}
         <Modal show={login} onHide={loginhandleClose}>
         <Modal.Header closeButton>
          
@@ -198,7 +252,48 @@ const MyProfile = () =>{
         </Modal.Header>
           <p className="text-center text-success"> </p>
         <Modal.Body>
-        
+               <p>{message}</p>
+          
+               <div className="form-group mb-3">
+                  <label>Name</label>
+                  <input type="text" 
+                  className="form-control"
+                   value={name} 
+                   onChange={obj=>processName(obj.target.value)}
+                   /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Contact No</label>
+                  <input type="text"
+                   className="form-control" 
+                   value={contact}
+                   onChange={obj=>processContact(obj.target.value)}
+                    /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Emp ID</label>
+                  <input type="text" 
+                  className="form-control" 
+                  value={cardid} 
+                  onChange={obj=>processCardId(obj.target.value)}
+                  /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Date</label>
+                  <input type="date" 
+                  className="form-control"  
+                //   value={dt} 
+                  onChange={obj=>processDate(obj.target.value)}
+                  /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Time</label>
+                  <input type="text" className="form-control" 
+                  onChange={obj=>processTime(obj.target.value)}
+                  value={displaytime } 
+                  disabled={true}  
+                  /> 
+               </div>
        
           
              
@@ -207,19 +302,86 @@ const MyProfile = () =>{
           <Button variant="secondary" onClick={loginhandleClose}>
             Close
           </Button>
-          <Button variant="primary" >
+          <Button variant="primary" onClick={save}>
              Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Logout modal */}
+      <Modal show={logout} onHide={logouthandleClose}>
+        <Modal.Header closeButton>
+         
+          <Modal.Title>Logout Time</Modal.Title>
+        </Modal.Header>
+          <p className="text-center text-success"> </p>
+        <Modal.Body>
+               <p>{message}</p>
+        
+               <div className="form-group mb-3">
+                  <label>Time</label>
+                  <input type="text" className="form-control" 
+                  onChange={obj=>processTime(obj.target.value)}
+                  value={displaytime} 
+                  disabled={true}  
+                  /> 
+               </div>
+       
+          
+             
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={logouthandleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={Logout}>
+             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+      <Modal show={lunch} onHide={lunchhandleClose}>
+        <Modal.Header closeButton>
+         
+          <Modal.Title>Lunch Break in Time</Modal.Title>
+        </Modal.Header>
+          <p className="text-center text-success"> </p>
+        <Modal.Body>
+               <p>{message}</p>
+        
+               <div className="form-group mb-3">
+                  <label>Time</label>
+                  <input type="text" className="form-control" 
+                  onChange={obj=>processTime(obj.target.value)}
+                  value={displaytime} 
+                  disabled={true}  
+                  /> 
+               </div>
+       
+          
+             
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={lunchhandleClose}>
+            Close
+          </Button>
+          <Button variant="info text-white" onClick={LunchIn}>
+             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+
         </>
     )
 
 
 }
-const logout = () =>{
-    localStorage.clear();
-    window.location.href="http://localhost:3000";
-}
+// const logout = () =>{
+//     localStorage.clear();
+//     window.location.href="http://localhost:3000";
+// }
 
 export default MyProfile;
