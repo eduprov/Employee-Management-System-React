@@ -131,7 +131,7 @@ const Dashboard = () =>{
 
 const logout = () =>{
     localStorage.clear();
-    window.location.href="http://localhost:3000";
+    window.location.href="https://employee-management-system-react.vercel.app/";
 }
 
 export default Dashboard
