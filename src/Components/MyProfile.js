@@ -23,7 +23,7 @@ const MyProfile = () =>{
     const[address, processAddress] = useState("");
 
     const getInfo = () =>{
-        var url = "https://eduprov.loca.lt/fetchemployeeinfo";
+        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
         var input ={"empid":localStorage.getItem("id")};
         axios.post(url, input)
         .then(response =>{
@@ -76,7 +76,7 @@ const MyProfile = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "elogout":logouttime, "empid":empid};
-        var url = "http://localhost:5005/attendance";
+        var url = "https://eduprovapi.loca.lt/attendance";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -87,7 +87,7 @@ const MyProfile = () =>{
     const Logout = () =>{
         var empid = localStorage.getItem("id");
         var input = {"etime":displaytime, "empid":empid}
-        var url = "https://eduprov.loca.lt/logoutattendance";
+        var url = "https://eduprovapi.loca.lt/logoutattendance";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -98,7 +98,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "elunchbreakout":lunchbreakout, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "http://localhost:5005/lunchbreakin";
+        var url = "https://eduprovapi.loca.lt/lunchbreakin";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);

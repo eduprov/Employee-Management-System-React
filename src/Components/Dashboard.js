@@ -24,7 +24,7 @@ const Dashboard = () =>{
     const[photo, processPhoto] = useState("");
 
     const getInfo = () =>{
-        var url = "http://localhost:5005/fetchemployeeinfo";
+        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
         var input ={"empid":localStorage.getItem("id")};
         axios.post(url, input)
         .then(response =>{
