@@ -17,7 +17,7 @@ const ApplyForLeave = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename": name, "emobile":mobile, "ecardid":cardid, "eemail":email, "efrom":from, "eto":to, "ereason":reason, "empid":empid}
-        var url = "http://localhost:2222/applyforleave";
+        var url = "https://eduprov.loca.lt/applyforleave";
         axios.post(url, input)
         .then(response =>{
            updateMessage(response.data);

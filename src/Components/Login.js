@@ -24,7 +24,7 @@ class Login extends Component{
     }
 
     login = () =>{
-        var url = "http://localhost:2222/login";
+        var url = "https://eduprov.loca.lt/login";
         var input ={
             "email" : this.state.email,
             "password": this.state.password,

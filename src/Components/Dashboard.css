@@ -60,6 +60,13 @@
     margin-top: 20px;
 }
 
+
+.profile-pic{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+    margin-top: 10px;
+}
 @media screen and (min-width:1px) and (max-width:768px){
     .welcome-header{
         font-weight: bold;

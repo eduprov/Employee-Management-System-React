@@ -34,38 +34,6 @@ const SideNavBar = () =>{
                            <span>Dashboard</span>
                        </a>
                    </Link>
-                   <Link to="/loginattendance">
-                       <a className="menu-item">
-                           <div className="menu-icon">
-                           <i class="fas fa-sign-in-alt"></i>
-                           </div>
-                           <span>Login Attendance</span>
-                       </a>
-                   </Link>
-                   <Link to="">
-                       <a className="menu-item">
-                           <div className="menu-icon">
-                           <i class="fas fa-box"></i>
-                           </div>
-                           <span>Lunch Break in </span>
-                       </a>
-                   </Link>
-                   <Link to="">
-                       <a className="menu-item">
-                           <div className="menu-icon">
-                           <i class="fab fa-uncharted"></i>
-                           </div>
-                           <span>Lunch Break out </span>
-                       </a>
-                   </Link>
-                   <Link to="logoutattendance">
-                       <a className="menu-item">
-                           <div className="menu-icon">
-                           <i class="fas fa-sign-out-alt"></i>
-                           </div>
-                           <span>Log out Attendace</span>
-                       </a>
-                   </Link>
                   
                </ul>
            </div>
