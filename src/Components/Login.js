@@ -37,7 +37,7 @@ class Login extends Component{
                 })
             }  else{
                 this.setState({
-                    message:"Logged in Succssfully"
+                    message:"Logged in Successfully"
                 })
                 localStorage.setItem("name", response.data[0].name);
                 localStorage.setItem("email", response.data[0].email);
