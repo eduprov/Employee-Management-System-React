@@ -3,51 +3,27 @@ import './Dashboard.css'
 import SideNavBar from './SideNavBar';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import man from './man.png'
 
 const Dashboard = () =>{
    
 
-    const[message, updateMessage] = useState("");
-   
-    const[name, processName] = useState("");
-    const[sex, processSex] = useState("")
-    const[age, processAge] = useState("");
-    const[contact, processContact] = useState("");
-    const[altcont, processAltMobile] = useState("");
-    const[cardid, processCardId] = useState("");
-    const[offmail, processMail] = useState("");
-    const[permail, processPermail] = useState("");
-    const[designation, processDesignation] = useState("");
-    const[department, processDepartment] = useState("");
-    const[joiningdate, processJoiningDate] = useState("");
-    const[address, processAddress] = useState("");
-    const[photo, processPhoto] = useState("");
+    // const[message, updateMessage] = useState("");
+    // const[photo, processPhoto] = useState("");
 
-    const getInfo = () =>{
-        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
-        var input ={"empid":localStorage.getItem("id")};
-        axios.post(url, input)
-        .then(response =>{
-            processName(response.data[0].name)
-            processSex(response.data[0].sex)
-            processAge(response.data[0].age)
-            processContact(response.data[0].contact)
-            processAltMobile(response.data[0].altcont)
-            processCardId(response.data[0].cardid)
-            processMail(response.data[0].offmail)
-            processPermail(response.data[0].permail)
-            processDesignation(response.data[0].designation)
-            processDepartment(response.data[0].department)
-            processJoiningDate(response.data[0].joiningdate)
-            processAddress(response.data[0].address)
-            processPhoto(response.data[0].photo)
-            console.log(response.data)
-        })
-    }
+    // const getInfo = () =>{
+    //     var url = "http://localhost:5005/fetchemployeeinfo";
+    //     var input ={"empid":localStorage.getItem("id")};
+    //     axios.post(url, input)
+    //     .then(response =>{
+    //         processPhoto(response.data[0].photo)
+    //         console.log(response.data)
+    //     })
+    // }
 
-    useEffect(()=>{
-       getInfo();
-    },[])
+    // useEffect(()=>{
+    //    getInfo();
+    // },[])
 
     return(
 
@@ -59,7 +35,7 @@ const Dashboard = () =>{
              
                </div>
                <Link to="/myprofile" className="col-md-3 mt-5">
-               <img src={photo} className="profile-pic" />  
+               <img src={man} className="profile-pic" />  
                </Link>
                <div className="col-md-4">
                
@@ -131,7 +107,7 @@ const Dashboard = () =>{
 
 const logout = () =>{
     localStorage.clear();
-    window.location.href="https://employee-management-system-react.vercel.app/";
+    window.location.href="http://localhost:3000";
 }
 
 export default Dashboard

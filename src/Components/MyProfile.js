@@ -23,7 +23,7 @@ const MyProfile = () =>{
     const[address, processAddress] = useState("");
 
     const getInfo = () =>{
-        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
+        var url = "http://localhost:5005/fetchemployeeinfo";
         var input ={"empid":localStorage.getItem("id")};
         axios.post(url, input)
         .then(response =>{
@@ -68,37 +68,56 @@ const MyProfile = () =>{
     const lunchhandleClose = () => setLunch(false);
     const lunchModal = () => setLunch(true);
 
+    const [lunchout, setLunchout] = useState(false);
+    const lunchouthandleClose = () => setLunchout(false);
+    const lunchoutModal = () => setLunchout(true);
+
+
+
 
     const[date, processDate] = useState("");
     const[time, processTime] = useState("");
-    const[logouttime, processLogoutTime] = useState("");
-    const[lunchbreakout, processLunchout] = useState("");
     const save = () =>{
         var empid = localStorage.getItem("id");
-        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "elogout":logouttime, "empid":empid};
-        var url = "https://eduprovapi.loca.lt/attendance";
+        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
+        var url = "http://localhost:5005/attendance";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
+            
         })
     }
 
 
-    const Logout = () =>{
-        var empid = localStorage.getItem("id");
-        var input = {"etime":displaytime, "empid":empid}
-        var url = "https://eduprovapi.loca.lt/logoutattendance";
-        axios.post(url, input)
-        .then(response =>{
-            updateMessage(response.data);
-        })
-    }
+ 
 
     const LunchIn = () =>{
         var empid = localStorage.getItem("id");
-        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "elunchbreakout":lunchbreakout, "empid":empid};
+        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "https://eduprovapi.loca.lt/lunchbreakin";
+        var url = "http://localhost:5005/lunchbreakin";
+        axios.post(url, input)
+        .then(response =>{
+            updateMessage(response.data);
+        })
+    }
+
+    const LunchOut = () =>{
+        var empid = localStorage.getItem("id");
+        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
+        // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
+        var url = "http://localhost:5005/lunchbreakout";
+        axios.post(url, input)
+        .then(response =>{
+            updateMessage(response.data);
+        })
+    }
+
+    const LogOut = () =>{
+        var empid = localStorage.getItem("id");
+        var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
+        // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
+        var url = "http://localhost:5005/logout";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -217,15 +236,25 @@ const MyProfile = () =>{
                          <div className="col-md-2"></div>
                          <div className="row mt-3">
                              <div className="col-md-2"></div>
-                             <div className="col-md-2"></div>
+                            
                              <div className="col-md-2">
                                <button className="btn btn-success" onClick={loginModal}>
                                        Login
                                </button>
                              </div>
-                             <div className="col-md-3">
-                               <button className="btn btn-primary text-white" onClick={lunchModal}>
-                                       Lunch
+                             <div className="col-md-2">
+                               <button className="btn btn-warning text-white" onClick={lunchModal}>
+                                    Break in
+                               </button>
+                             </div>
+                             <div className="col-md-2">
+                               <button className="btn btn-success text-white" onClick={lunchoutModal}>
+                                       Break out
+                               </button>
+                             </div>
+                             <div className="col-md-2">
+                               <button className="btn btn-danger text-white" onClick={logoutModal}>
+                                      Logout
                                </button>
                              </div>
                          </div>
@@ -293,13 +322,6 @@ const MyProfile = () =>{
                   disabled={true}  
                   /> 
                </div>
-               <div className="form-group mb-3">
-                  <label>Logout Time</label>
-                  <input type="datetime-local" className="form-control" 
-                  onChange={obj=>processLogoutTime(obj.target.value)}
-           
-                  /> 
-               </div>
 
        
           
@@ -314,45 +336,6 @@ const MyProfile = () =>{
           </Button>
         </Modal.Footer>
       </Modal>
-
-      {/* Logout modal */}
-      {/* <Modal show={logout} onHide={logouthandleClose}>
-        <Modal.Header closeButton>
-         
-          <Modal.Title>Logout Time</Modal.Title>
-        </Modal.Header>
-          <p className="text-center text-success"> </p>
-        <Modal.Body>
-               <p>{message}</p>
-        
-               <div className="form-group mb-3">
-                  <label>Lunch Break in</label>
-                  <input type="text" className="form-control" 
-                  onChange={obj=>processTime(obj.target.value)}
-                  value={displaytime} 
-                  disabled={true}  
-                  /> 
-               </div>
-               <div className="form-group mb-3">
-                  <label>Lunch Break out</label>
-                  <input type="datetime-local" className="form-control" 
-                  onChange={obj=>processLunchout(obj.target.value)}
-                  /> 
-               </div>
-       
-          
-             
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={logouthandleClose}>
-            Close
-          </Button>
-          <Button variant="danger" onClick={Logout}>
-             Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-
 
       <Modal show={lunch} onHide={lunchhandleClose}>
         <Modal.Header closeButton>
@@ -408,12 +391,7 @@ const MyProfile = () =>{
                   disabled={true}  
                   /> 
                </div>
-               <div className="form-group mb-3">
-                  <label>Lunch Break out</label>
-                  <input type="datetime-local" className="form-control" 
-                  onChange={obj=>processLunchout(obj.target.value)}
-                  /> 
-               </div>
+             
        
           
              
@@ -423,6 +401,141 @@ const MyProfile = () =>{
             Close
           </Button>
           <Button variant="info text-white" onClick={LunchIn}>
+             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={lunchout} onHide={lunchouthandleClose}>
+        <Modal.Header closeButton>
+         
+          <Modal.Title>Lunch Break out Time</Modal.Title>
+        </Modal.Header>
+          <p className="text-center text-success"> </p>
+        <Modal.Body>
+               <p>{message}</p>
+
+               <div className="form-group mb-3">
+                  <label>Name</label>
+                  <input type="text" 
+                  className="form-control"
+                   value={name} 
+                   onChange={obj=>processName(obj.target.value)}
+                   disabled={true} 
+                   /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Contact No</label>
+                  <input type="text"
+                   className="form-control" 
+                   value={contact}
+                   onChange={obj=>processContact(obj.target.value)}
+                   disabled={true} 
+                    /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Emp ID</label>
+                  <input type="text" 
+                  className="form-control" 
+                  value={cardid} 
+                  onChange={obj=>processCardId(obj.target.value)}
+                  disabled={true} 
+                  /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Date</label>
+                  <input type="text" 
+                  className="form-control"  
+                  value={dt} 
+                  onChange={obj=>processDate(obj.target.value)}
+                  disabled={true} 
+                  /> 
+               </div>
+        
+               <div className="form-group mb-3">
+                  <label>Lunch Break out</label>
+                  <input type="text" className="form-control" 
+                  onChange={obj=>processTime(obj.target.value)}
+                  value={displaytime} 
+                  disabled={true}  
+                  /> 
+               </div>
+          
+             
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={lunchouthandleClose}>
+            Close
+          </Button>
+          <Button variant="info text-white" onClick={LunchOut}>
+             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={logout} onHide={logouthandleClose}>
+        <Modal.Header closeButton>
+         
+          <Modal.Title>Logout Time</Modal.Title>
+        </Modal.Header>
+          <p className="text-center text-success"> </p>
+        <Modal.Body>
+               <p>{message}</p>
+          
+               <div className="form-group mb-3">
+                  <label>Name</label>
+                  <input type="text" 
+                  className="form-control"
+                   value={name} 
+                   onChange={obj=>processName(obj.target.value)}
+                   disabled={true} 
+                   /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Contact No</label>
+                  <input type="text"
+                   className="form-control" 
+                   value={contact}
+                   onChange={obj=>processContact(obj.target.value)}
+                   disabled={true} 
+                    /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Emp ID</label>
+                  <input type="text" 
+                  className="form-control" 
+                  value={cardid} 
+                  onChange={obj=>processCardId(obj.target.value)}
+                  disabled={true} 
+                  /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Date</label>
+                  <input type="text" 
+                  className="form-control"  
+                  value={dt} 
+                  onChange={obj=>processDate(obj.target.value)}
+                  disabled={true} 
+                  /> 
+               </div>
+               <div className="form-group mb-3">
+                  <label>Time</label>
+                  <input type="text" className="form-control" 
+                  onChange={obj=>processTime(obj.target.value)}
+                  value={displaytime } 
+                  disabled={true}  
+                  /> 
+               </div>
+
+       
+          
+             
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={logouthandleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={LogOut}>
              Save Changes
           </Button>
         </Modal.Footer>

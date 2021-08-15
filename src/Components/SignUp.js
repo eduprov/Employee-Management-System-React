@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import SideNavBar from './SideNavBar';
 import './SignUp.css'
 import axios from 'axios'
+import { useForm } from "react-hook-form";
 const SignUp = () =>{
 
     const[message, updateMessage] = useState([]);
@@ -36,7 +37,7 @@ const SignUp = () =>{
             "eaddress":address, 
             "empid":empid
         }
-        var url = "https://eduprovapi.loca.lt/employeeinfo";
+        var url = "http://localhost:5005/employeeinfo";
         axios.post(url,input)
         .then(response =>{
             updateMessage(response.data);
@@ -56,6 +57,7 @@ const SignUp = () =>{
         })
     }
 
+    const { register, handleSubmit } = useForm();
 
     return(
         <>
@@ -73,13 +75,15 @@ const SignUp = () =>{
                               <label>Name</label>
                               <input type="text" 
                               className="form-control"
+                              {...register("name", { required: true })}
                               onChange={obj=>pickName(obj.target.value)}
                                />
                           </div>
                           <div className="col-md-4 mt-4 mb-3">
-                              <label>Sex</label>
+                              <label>Gender</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("gender", { required: true })}
                               onChange={obj=>pickSex(obj.target.value)}
                               />
                           </div>
@@ -87,6 +91,7 @@ const SignUp = () =>{
                               <label>Age</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("age", { required: true })}
                               onChange={obj=>pickAge(obj.target.value)}
                               />
                           </div>
@@ -96,13 +101,15 @@ const SignUp = () =>{
                               <label>Contact No</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("contact", { required: true })}
                               onChange={obj=>pickContact(obj.target.value)}
                               />
                           </div>
                           <div className="col-md-4 mb-3">
                               <label>Alternative Number</label>
                               <input type="text" 
-                              className="form-control" 
+                              className="form-control"
+                              {...register("altcontact", { required: true })} 
                               onChange={obj=>pickAltContact(obj.target.value)}
                               />
                           </div>
@@ -110,6 +117,7 @@ const SignUp = () =>{
                               <label>Emp ID</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("empid", { required: true })}
                               onChange={obj=>pickCardId(obj.target.value)}
                               />
                           </div>
@@ -119,6 +127,7 @@ const SignUp = () =>{
                               <label>Offical Mail ID</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("offmailid", { required: true })}
                               onChange={obj=>pickOffMail(obj.target.value)}
                               />
                           </div>
@@ -126,6 +135,7 @@ const SignUp = () =>{
                               <label>Personal Mail ID</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("permailid", { required: true })}
                               onChange={obj=>pickPerMail(obj.target.value)}
                               />
                           </div>
@@ -133,6 +143,7 @@ const SignUp = () =>{
                               <label>Designation</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("designation", { required: true })}
                               onChange={obj=>pickDesignation(obj.target.value)}
                               />
                           </div>
@@ -142,13 +153,15 @@ const SignUp = () =>{
                               <label>Department</label>
                               <input type="text" 
                               className="form-control" 
+                              {...register("department", { required: true })}
                               onChange={obj=>pickDepartment(obj.target.value)}
                               />
                           </div>
                           <div className="col-md-4 mb-3">
                               <label>Joining Date</label>
                               <input type="text" 
-                              className="form-control" 
+                              className="form-control"
+                              {...register("joiningdate", { required: true })}
                               onChange={obj=>pickDate(obj.target.value)}
                               />
                           </div>
@@ -158,6 +171,7 @@ const SignUp = () =>{
                               <label>Address</label>
                              <textarea 
                              className="form-control"
+                             {...register("address", { required: true })}
                              onChange={obj=>pickAddress(obj.target.value)}
                              >
 
@@ -166,7 +180,7 @@ const SignUp = () =>{
                         
                       </div>
                       <div>
-                          <button className="btn btn-block btn-success" onClick={save}>
+                          <button className="btn btn-block btn-success" onClick={handleSubmit(save)}>
                               Save
                         </button>
                       </div>
@@ -181,69 +195,3 @@ const SignUp = () =>{
 
 }
 export default SignUp
-
-{/* <div className="card-body">
-<h5 className="mb-4">Update Employee Info</h5>
- <p className="text-success">{message}</p>
-<div className="row">
-    <div className="col-md-6 mb-3">
-        <label>Employee Name</label>
-        <input type="text" 
-        className="form-control" 
-        />
-    </div>
-    <div className="col-md-6 mb-3">
-    <label>Mobile No</label>
-        <input type="text" 
-        className="form-control" 
-        onChange={obj=>pickMobile(obj.target.value)}/>
-    </div>
-</div>
-<div className="row">
-    <div className="col-md-6 mb-3">
-    <label>Employee ID</label>
-        <input type="text" 
-        className="form-control" 
-        onChange={obj=>pickCardid(obj.target.value)}
-        />
-    </div>
-    <div className="col-md-6 mb-3">
-        <label>Age</label>
-        <input type="text" 
-        className="form-control" 
-        onChange={obj=>pickAge(obj.target.value)}
-        />
-    </div>
-</div>
-<div className="row">
-    <div className="col-md-6 mb-3">
-    <label>Personal Email-ID</label>
-        <input type="text" 
-        className="form-control" 
-        onChange={obj=>pickEmail(obj.target.value)}
-        />
-    </div>
-    <div className="col-md-6 mb-3">
-    <label>Professional Email-ID</label>
-        <input type="text" 
-        className="form-control" 
-        onChange={obj=>pickEmail(obj.target.value)}
-        />
-    </div>
-
-    <div className="col-md-12 mb-3">
-    <label>Address</label>
-        
-       <textarea className="form-control">
-
-       </textarea>
-    </div>
-
-    
-</div>
-<div className="form-group mt-3">
-    <button className="btn btn-primary" onClick={save}>
-         Save
-    </button>
-</div>
-</div> */}
