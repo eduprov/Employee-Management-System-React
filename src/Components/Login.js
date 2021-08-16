@@ -44,7 +44,7 @@ class Login extends Component{
                 localStorage.setItem("id", response.data[0].id);
                 
             }
-            window.location.href="https://employee-management-system-react.vercel.app/"
+            window.location.href="https://employee-management-system-react.vercel.app"
         })
     }
 
