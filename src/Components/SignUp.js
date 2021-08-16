@@ -37,7 +37,7 @@ const SignUp = () =>{
             "eaddress":address, 
             "empid":empid
         }
-        var url = "http://localhost:5005/employeeinfo";
+        var url = "https://eduprovapi.loca.lt/employeeinfo";
         axios.post(url,input)
         .then(response =>{
             updateMessage(response.data);

@@ -23,7 +23,7 @@ const MyProfile = () =>{
     const[address, processAddress] = useState("");
 
     const getInfo = () =>{
-        var url = "http://localhost:5005/fetchemployeeinfo";
+        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
         var input ={"empid":localStorage.getItem("id")};
         axios.post(url, input)
         .then(response =>{
@@ -80,7 +80,7 @@ const MyProfile = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
-        var url = "http://localhost:5005/attendance";
+        var url = "https://eduprovapi.loca.lt/attendance";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -95,7 +95,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "http://localhost:5005/lunchbreakin";
+        var url = "https://eduprovapi.loca.lt/lunchbreakin";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -106,7 +106,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "http://localhost:5005/lunchbreakout";
+        var url = "https://eduprovapi.loca.lt/lunchbreakout";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -117,7 +117,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "http://localhost:5005/logout";
+        var url = "https://eduprovapi.loca.lt/logout";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);

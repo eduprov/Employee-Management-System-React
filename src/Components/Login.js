@@ -24,7 +24,7 @@ class Login extends Component{
     }
 
     login = () =>{
-        var url = "http://localhost:5005/login";
+        var url = "https://eduprovapi.loca.lt/login";
         var input ={
             "email" : this.state.email,
             "password": this.state.password,
@@ -44,7 +44,7 @@ class Login extends Component{
                 localStorage.setItem("id", response.data[0].id);
                 
             }
-            window.location.href="http://localhost:3000/"
+            window.location.href="https://employee-management-system-react.vercel.app/"
         })
     }
 
