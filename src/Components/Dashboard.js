@@ -40,11 +40,11 @@ const Dashboard = () =>{
                <div className="col-md-4">
                
                </div>
-               <div className="col-md-3 mt-5 pt-4">
+               <div className="col-md-3 mt-5 pt-4 power-button">
                  
 
                 <Link className="logout" onClick={logout}>
-                  <li class="fa fa-power-off text-danger"></li> <span className="text-danger">Logout</span>
+                  <li className="fa fa-power-off text-danger"></li> <span className="text-danger">Logout</span>
             
               </Link>
                </div>

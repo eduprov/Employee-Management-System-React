@@ -117,7 +117,6 @@ const SignUp = () =>{
                               <label>Emp ID</label>
                               <input type="text" 
                               className="form-control" 
-                              {...register("empid", { required: true })}
                               onChange={obj=>pickCardId(obj.target.value)}
                               />
                           </div>
@@ -166,7 +165,7 @@ const SignUp = () =>{
                               />
                           </div>
                       </div>
-                      <div className="row">
+                      {/* <div className="row">
                           <div className="col-md-12 mb-3">
                               <label>Address</label>
                              <textarea 
@@ -178,7 +177,7 @@ const SignUp = () =>{
                              </textarea>
                           </div>
                         
-                      </div>
+                      </div> */}
                       <div>
                           <button className="btn btn-block btn-success" onClick={handleSubmit(save)}>
                               Save
