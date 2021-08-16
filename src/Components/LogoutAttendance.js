@@ -24,7 +24,7 @@ const LogoutAttendace = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "emobile":mobile, "cemail":email, "ecardid":cardid, "empid":empid, "etime":displaytime};
-        var url = "https://eduprovapi.loca.lt/logoutattendance"
+        var url = "https://eduprovapilink.loca.lt/logoutattendance"
         axios.post(url, input)
         .then(response =>{
         updateMessage(response.data)
@@ -40,7 +40,7 @@ const LogoutAttendace = () =>{
     const[employee, getEmployee] = useState([]);
     const FetchEmployee = () =>{
         var input ={"empid": localStorage.getItem("id")}
-        var url = "https://eduprovapi.loca.lt/fetchemployeeinfo";
+        var url = "https://eduprovapilink.loca.lt/fetchemployeeinfo";
         axios.post(url, input)
         .then(response => getEmployee(response.data))
     }
