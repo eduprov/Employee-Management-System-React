@@ -40,7 +40,7 @@ const LogoutAttendace = () =>{
     const[employee, getEmployee] = useState([]);
     const FetchEmployee = () =>{
         var input ={"empid": localStorage.getItem("id")}
-        var url = "https://eduprovapilink.loca.lt/fetchemployeeinfo";
+        var url = "https://naveen.loca.lt/fetchemployeeinfo";
         axios.post(url, input)
         .then(response => getEmployee(response.data))
     }

@@ -37,7 +37,7 @@ const SignUp = () =>{
             "eaddress":address, 
             "empid":empid
         }
-        var url = "https://eduprovapilink.loca.lt/employeeinfo";
+        var url = "https://naveen.loca.lt/employeeinfo";
         axios.post(url,input)
         .then(response =>{
             updateMessage(response.data);

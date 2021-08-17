@@ -23,7 +23,7 @@ const MyProfile = () =>{
     const[address, processAddress] = useState("");
 
     const getInfo = () =>{
-        var url = "https://eduprovapilink.loca.lt/fetchemployeeinfo";
+        var url = "https://naveen.loca.lt/fetchemployeeinfo";
         var input ={"empid":localStorage.getItem("id")};
         axios.post(url, input)
         .then(response =>{
@@ -80,7 +80,7 @@ const MyProfile = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
-        var url = "https://eduprovapilink.loca.lt/attendance";
+        var url = "https://naveen.loca.lt/attendance";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -95,7 +95,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "https://eduprovapilink.loca.lt/lunchbreakin";
+        var url = "https://naveen.loca.lt/lunchbreakin";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -106,7 +106,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "https://eduprovapilink.loca.lt/lunchbreakout";
+        var url = "https://naveen.loca.lt/lunchbreakout";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -117,7 +117,7 @@ const MyProfile = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "econtact":contact, "ecardid":cardid, "edate":dt, "etime":displaytime, "empid":empid};
         // var input = {"etime":displaytime, "elunchout":lunchout, "elunchbreakout":lunchbreakout, "empid":empid}
-        var url = "https://eduprovapilink.loca.lt/logout";
+        var url = "https://naveen.loca.lt/logout";
         axios.post(url, input)
         .then(response =>{
             updateMessage(response.data);
@@ -144,7 +144,7 @@ const MyProfile = () =>{
                              </div>
                              <div className="col-md-4">
                                  <div className="form-group mb-1">
-                                     <label>Sex</label>
+                                     <label>Gender</label>
                                      <input type="text" value={sex} disabled={true}
                                      className="form-control" />
                                  </div>
@@ -219,19 +219,6 @@ const MyProfile = () =>{
                                  </div>
                              </div>
                           
-                         </div>
-                         <div className="row mt-3">
-                             <div className="col-md-12">
-                                 <div className="form-group mb-1">
-                                     <label>Address</label>
-                                     <textarea className="form-control" 
-                                     value={address} disabled={true}
-                                     >
-
-                                     </textarea>
-
-                                 </div>
-                             </div>
                          </div>
                          <div className="col-md-2"></div>
                          <div className="row mt-3">

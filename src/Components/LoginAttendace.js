@@ -17,7 +17,7 @@ const LoginAttendace = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "emobile":mobile, "cemail":email, "ecardid":cardid, "empid":empid, "elogin":dt, "etime":displaytime};
-        var url = "https://eduprovapilink.loca.lt/loginattendance"
+        var url = "https://naveen.loca.lt/loginattendance"
         axios.post(url, input)
         .then(response =>{
         updateMessage(response.data)

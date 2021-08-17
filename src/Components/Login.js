@@ -24,7 +24,7 @@ class Login extends Component{
     }
 
     login = () =>{
-        var url = "https://eduprovapilink.loca.lt/login";
+        var url = "https://naveen.loca.lt/login";
         var input ={
             "email" : this.state.email,
             "password": this.state.password,
