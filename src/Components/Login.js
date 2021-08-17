@@ -44,7 +44,7 @@ class Login extends Component{
                 localStorage.setItem("id", response.data[0].id);
                 
             }
-            window.location.href="http://localhost:3000/"
+            window.location.href="https://management-system-five.vercel.app"
         })
     }
 
