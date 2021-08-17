@@ -40,7 +40,7 @@ const Dashboard = () =>{
                <div className="col-md-4">
                
                </div>
-               <div className="col-md-3 mt-5 pt-4 power-button">
+               <div className="col-md-3 power-button">
                  
 
                 <Link className="logout" onClick={logout}>

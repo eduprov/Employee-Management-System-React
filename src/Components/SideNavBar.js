@@ -17,7 +17,7 @@ const  SideNavBar = () => {
            <div className='navbar'>
            <div className='navbar-container container'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            
+              Employee Management System
             </Link> 
             <div className='menu-icon' onClick={handClick}>
                 {click ? <FaTimes/> : <FaBars/>}
