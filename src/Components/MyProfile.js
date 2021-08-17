@@ -224,22 +224,22 @@ const MyProfile = () =>{
                          <div className="row mt-3">
                              <div className="col-md-2"></div>
                             
-                             <div className="col-md-2 login">
+                             <div className="col-md-2 m-2 login">
                                <button className="btn btn-success" onClick={loginModal}>
                                        Login
                                </button>
                              </div>
-                             <div className="col-md-2">
+                             <div className="col-md-2 m-2">
                                <button className="btn btn-warning text-white" onClick={lunchModal}>
                                     Break in
                                </button>
                              </div>
-                             <div className="col-md-2">
+                             <div className="col-md-2 m-2">
                                <button className="btn btn-success text-white" onClick={lunchoutModal}>
                                        Break out
                                </button>
                              </div>
-                             <div className="col-md-2">
+                             <div className="col-md-2 m-2">
                                <button className="btn btn-danger text-white" onClick={logoutModal}>
                                       Logout
                                </button>
