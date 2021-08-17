@@ -17,3 +17,7 @@
     border-radius: 10px;
     box-shadow: 3px 5px 5px rgb(212, 211, 211);
 }
+
+@media screen and (min-width:1px) and (max-width:600px){
+   
+}

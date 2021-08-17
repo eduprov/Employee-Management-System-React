@@ -224,7 +224,7 @@ const MyProfile = () =>{
                          <div className="row mt-3">
                              <div className="col-md-2"></div>
                             
-                             <div className="col-md-2">
+                             <div className="col-md-2 login">
                                <button className="btn btn-success" onClick={loginModal}>
                                        Login
                                </button>
