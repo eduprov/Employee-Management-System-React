@@ -37,7 +37,7 @@ const SignUp = () =>{
             "eaddress":address, 
             "empid":empid
         }
-        var url = "http://eduprovapiserver.app.vtxhub.com/employeeinfo";
+        var url = "https://eduprovapiserver.app.vtxhub.com/employeeinfo";
         axios.post(url,input)
         .then(response =>{
             updateMessage(response.data);
