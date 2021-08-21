@@ -98,7 +98,7 @@ const Dashboard = () =>{
 
 const logout = () =>{
     localStorage.clear();
-    window.location.href="https://management-system-five.vercel.app";
+    window.location.href="http://localhost:3000";
 }
 
 export default Dashboard

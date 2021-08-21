@@ -24,7 +24,7 @@ const LogoutAttendace = () =>{
     const save = () =>{
         var empid = localStorage.getItem("id");
         var input = {"ename":name, "emobile":mobile, "cemail":email, "ecardid":cardid, "empid":empid, "etime":displaytime};
-        var url = "https://eduprovapiserver.app.vtxhub.com/logoutattendance"
+        var url = "http://localhost:5005/logoutattendance"
         axios.post(url, input)
         .then(response =>{
         updateMessage(response.data)
@@ -124,21 +124,3 @@ const LogoutAttendace = () =>{
 }
 export default LogoutAttendace
 
-{/* <div className="col-md-6">
-                            <div className="form-group mb-3">
-                                    <label>Name</label>
-                                    <input type="text" 
-                                    className="form-control" 
-                                    onChange={obj=>pickName(obj.target.value)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                            <div className="form-group mb-3">
-                                    <label>Time</label>
-                                    <input type="text" value={displaytime } disabled={true}
-                                    className="form-control" 
-                                    onChange={obj=>pickTime(obj.target.value)}
-                                    />
-                                </div>
-                            </div> */}
